@@ -3,7 +3,7 @@
 #define LED_PIN     5
 #define COLOR_ORDER GRB
 #define CHIPSET     WS2811
-#define NUM_LEDS    30
+#define NUM_LEDS    80
 
 #define BRIGHTNESS  200
 #define FRAMES_PER_SECOND 60
@@ -43,7 +43,8 @@ CRGBPalette16 gPal;
 
 void setup() {
   delay(3000); // sanity delay
-  FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  //FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<WS2801, 11, 13, RGB>(leds, NUM_LEDS);
   FastLED.setBrightness( BRIGHTNESS );
 
   // This first palette is the basic 'black body radiation' colors,
