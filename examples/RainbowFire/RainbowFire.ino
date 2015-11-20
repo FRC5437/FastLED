@@ -1,9 +1,9 @@
 #include <FastLED.h>
 
-#define LED_PIN     5
+#define LED_PIN     11
 #define COLOR_ORDER GRB
-#define CHIPSET     WS2811
-#define NUM_LEDS    80
+#define CHIPSET     WS2812B
+#define NUM_LEDS    150
 
 #define BRIGHTNESS  200
 #define FRAMES_PER_SECOND 60
@@ -43,13 +43,14 @@ CRGBPalette16 gPal;
 
 void setup() {
   delay(3000); // sanity delay
-  //FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
-  FastLED.addLeds<WS2801, 11, 13, RGB>(leds, NUM_LEDS);
+  FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  //FastLED.addLeds<WS2801, 11, 13, RGB>(leds, NUM_LEDS);
   FastLED.setBrightness( BRIGHTNESS );
 
   // This first palette is the basic 'black body radiation' colors,
   // which run from black to red to bright yellow to white.
-  gPal = HeatColors_p;
+  //gPal = HeatColors_p;
+  gPal = CRGBPalette16(CRGB::Red, CRGB::Green, CRGB::Blue);
   
   // These are other ways to set up the color palette for the 'fire'.
   // First, a gradient from black to red to yellow to white -- similar to HeatColors_p
@@ -59,7 +60,7 @@ void setup() {
   //   gPal = CRGBPalette16( CRGB::Black, CRGB::Blue, CRGB::Aqua,  CRGB::White);
   
   // Third, here's a simpler, three-step gradient, from black to red to white
-  //   gPal = CRGBPalette16( CRGB::Black, CRGB::Red, CRGB::White);
+  //  gPal = CRGBPalette16( CRGB::Black, CRGB::Red, CRGB::White);
 
 }
 
