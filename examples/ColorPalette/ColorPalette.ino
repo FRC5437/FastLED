@@ -1,32 +1,13 @@
 #include <FastLED.h>
 
-#define LED_PIN     5
-#define NUM_LEDS    50
+#define LED_PIN     6
+#define NUM_LEDS    600
 #define BRIGHTNESS  64
-#define LED_TYPE    WS2811
+#define LED_TYPE    WS2812B
 #define COLOR_ORDER GRB
 CRGB leds[NUM_LEDS];
 
 #define UPDATES_PER_SECOND 100
-
-// This example shows several ways to set up and use 'palettes' of colors
-// with FastLED.
-//
-// These compact palettes provide an easy way to re-colorize your
-// animation on the fly, quickly, easily, and with low overhead.
-//
-// USING palettes is MUCH simpler in practice than in theory, so first just
-// run this sketch, and watch the pretty lights as you then read through
-// the code.  Although this sketch has eight (or more) different color schemes,
-// the entire sketch compiles down to about 6.5K on AVR.
-//
-// FastLED provides a few pre-configured color palettes, and makes it
-// extremely easy to make up your own color schemes with palettes.
-//
-// Some notes on the more abstract 'theory and practice' of
-// FastLED compact palettes are at the bottom of this file.
-
-
 
 CRGBPalette16 currentPalette;
 TBlendType    currentBlending;
@@ -41,7 +22,7 @@ void setup() {
     FastLED.setBrightness(  BRIGHTNESS );
     
     currentPalette = RainbowColors_p;
-    currentBlending = LINEARBLEND;
+    currentBlending = BLEND;
 }
 
 
@@ -84,17 +65,17 @@ void ChangePalettePeriodically()
     
     if( lastSecond != secondHand) {
         lastSecond = secondHand;
-        if( secondHand ==  0)  { currentPalette = RainbowColors_p;         currentBlending = LINEARBLEND; }
-        if( secondHand == 10)  { currentPalette = RainbowStripeColors_p;   currentBlending = NOBLEND;  }
-        if( secondHand == 15)  { currentPalette = RainbowStripeColors_p;   currentBlending = LINEARBLEND; }
-        if( secondHand == 20)  { SetupPurpleAndGreenPalette();             currentBlending = LINEARBLEND; }
-        if( secondHand == 25)  { SetupTotallyRandomPalette();              currentBlending = LINEARBLEND; }
-        if( secondHand == 30)  { SetupBlackAndWhiteStripedPalette();       currentBlending = NOBLEND; }
-        if( secondHand == 35)  { SetupBlackAndWhiteStripedPalette();       currentBlending = LINEARBLEND; }
-        if( secondHand == 40)  { currentPalette = CloudColors_p;           currentBlending = LINEARBLEND; }
-        if( secondHand == 45)  { currentPalette = PartyColors_p;           currentBlending = LINEARBLEND; }
-        if( secondHand == 50)  { currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;  }
-        if( secondHand == 55)  { currentPalette = myRedWhiteBluePalette_p; currentBlending = LINEARBLEND; }
+        if( secondHand ==  0)  { currentPalette = RainbowColors_p;         currentBlending = BLEND; }
+        //if( secondHand == 10)  { currentPalette = RainbowStripeColors_p;   currentBlending = NOBLEND;  }
+        if( secondHand == 15)  { currentPalette = RainbowStripeColors_p;   currentBlending = BLEND; }
+        if( secondHand == 30)  { SetupPurpleAndGoldPalette();             currentBlending = BLEND; }
+        //if( secondHand == 25)  { SetupTotallyRandomPalette();              currentBlending = BLEND; }
+        //if( secondHand == 30)  { SetupBlackAndWhiteStripedPalette();       currentBlending = NOBLEND; }
+        //if( secondHand == 35)  { SetupBlackAndWhiteStripedPalette();       currentBlending = BLEND; }
+        //if( secondHand == 40)  { currentPalette = CloudColors_p;           currentBlending = BLEND; }
+        if( secondHand == 45)  { currentPalette = PartyColors_p;           currentBlending = BLEND; }
+        //if( secondHand == 50)  { currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;  }
+        //if( secondHand == 55)  { currentPalette = myRedWhiteBluePalette_p; currentBlending = BLEND; }
     }
 }
 
@@ -123,17 +104,17 @@ void SetupBlackAndWhiteStripedPalette()
 }
 
 // This function sets up a palette of purple and green stripes.
-void SetupPurpleAndGreenPalette()
+void SetupPurpleAndGoldPalette()
 {
     CRGB purple = CHSV( HUE_PURPLE, 255, 255);
-    CRGB green  = CHSV( HUE_GREEN, 255, 255);
+    CRGB gold  = CHSV( HUE_YELLOW, 255, 255);
     CRGB black  = CRGB::Black;
     
     currentPalette = CRGBPalette16(
-                                   green,  green,  black,  black,
-                                   purple, purple, black,  black,
-                                   green,  green,  black,  black,
-                                   purple, purple, black,  black );
+                                   gold,  gold,  gold,  black,
+                                   purple, purple, purple,  black,
+                                   gold,  gold,  gold,  black,
+                                   purple, purple, purple,  black );
 }
 
 
